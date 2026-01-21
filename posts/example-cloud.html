@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS IAM Privilege Escalation Paths - Security Blog</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Archivo:wght@300;600;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="grain-overlay"></div>
+    
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <span class="bracket">[</span>
+                <span class="logo-text">security.blog</span>
+                <span class="bracket">]</span>
+                <span class="cursor">_</span>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">posts</a>
+                <a href="../about.html">about</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <a href="../index.html" class="back-link">back to posts</a>
+        
+        <article class="post-header">
+            <div class="post-meta">
+                <time>2026-01-08</time>
+                <span class="separator">//</span>
+                <span class="read-time">6 min read</span>
+            </div>
+            <h1 class="post-title">AWS IAM Privilege Escalation Paths</h1>
+            <div class="tags">
+                <span class="tag tag-cloud">cloud-security</span>
+                <span class="tag tag-aws">aws</span>
+            </div>
+        </article>
+
+        <section class="post-content">
+            <p>
+                During a recent cloud security assessment, I discovered multiple privilege escalation paths in AWS environments that organizations often miss. These misconfigurations can allow a low-privilege user to gain administrative access to your entire AWS account.
+            </p>
+
+            <h2>Common Misconfiguration #1: Overly Permissive IAM PassRole</h2>
+            <p>
+                The <code>iam:PassRole</code> permission is often misunderstood. When combined with certain service permissions, it can lead to privilege escalation. Here's a dangerous policy I found:
+            </p>
+
+            <pre><code>{
+    "Version": "2012-10-17",
+    "Statement": [{
+        "Effect": "Allow",
+        "Action": [
+            "iam:PassRole",
+            "lambda:CreateFunction",
+            "lambda:InvokeFunction"
+        ],
+        "Resource": "*"
+    }]
+}</code></pre>
+
+            <p>
+                An attacker with these permissions can:
+            </p>
+            <ol>
+                <li>Create a Lambda function</li>
+                <li>Pass a highly privileged role to it (like an admin role)</li>
+                <li>Invoke the function to execute code with elevated privileges</li>
+            </ol>
+
+            <h2>Detection Strategy</h2>
+            <p>
+                I built a script to scan IAM policies for dangerous permission combinations. The key is looking for:
+            </p>
+
+            <ul>
+                <li><code>iam:PassRole</code> + service create/invoke permissions</li>
+                <li>Wildcard resources (*) in sensitive actions</li>
+                <li>Roles with <code>AssumeRole</code> permissions to admin roles</li>
+            </ul>
+
+            <h3>Remediation</h3>
+            <p>
+                Always scope <code>iam:PassRole</code> to specific role ARNs and limit which services can receive roles. Here's a safer policy:
+            </p>
+
+            <pre><code>{
+    "Version": "2012-10-17",
+    "Statement": [{
+        "Effect": "Allow",
+        "Action": "iam:PassRole",
+        "Resource": "arn:aws:iam::123456789012:role/SpecificLambdaRole",
+        "Condition": {
+            "StringEquals": {
+                "iam:PassedToService": "lambda.amazonaws.com"
+            }
+        }
+    }]
+}</code></pre>
+
+            <h2>Monitoring for Exploitation</h2>
+            <p>
+                Set up CloudWatch alerts for:
+            </p>
+            <ul>
+                <li>PassRole events followed by service creation/invocation</li>
+                <li>Unusual AssumeRole patterns</li>
+                <li>Creation of resources by users who don't typically create them</li>
+            </ul>
+
+            <p>
+                Understanding these privilege escalation paths is crucial for securing cloud environments. I'll be releasing a tool soon that automatically scans AWS accounts for these misconfigurations.
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 [Your Name]. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="https://github.com/yourusername" target="_blank">GitHub</a>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
