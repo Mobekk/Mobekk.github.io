@@ -9,10 +9,7 @@ image: /assets/images/me.png
 
 My very first blog post!
 
-This is where your actual post content goes...
-
-
-#Why a blog you ask?
+# Why a blog you ask?
 
 I never really though I would be the person to ever create a blog. When thinking about a blog I have always thought of the barbie/pink bloggers that i've been so traumatized from.(Having a twin sister will do that.)
 
