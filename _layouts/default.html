@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Archivo:wght@300;600;900&display=swap" rel="stylesheet">
+    {% feed_meta %}
+</head>
+<body>
+    <div class="grain-overlay"></div>
+    
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <span class="bracket">[</span>
+                <span class="logo-text">Mobekk.blog</span>
+                <span class="bracket">]</span>
+                <span class="cursor">_</span>
+            </div>
+            <div class="nav-links">
+                <a href="{{ '/' | relative_url }}">posts</a>
+                <a href="{{ '/about' | relative_url }}">about</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        {{ content }}
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 [Bjørn Mobekk]. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="https://github.com/Mobekk" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/bjørn-mobekk-204710183" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

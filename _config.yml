@@ -1,0 +1,16 @@
+title: Mobekk.blog
+description: My security blog
+url: "https://mobekk.blog"
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+plugins:
+  - jekyll-feed
+
+# Exclude files from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - .gitignore
