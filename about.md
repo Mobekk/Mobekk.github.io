@@ -15,7 +15,7 @@ permalink: /about/
         I got into security because I like solving puzzles, and you get to experience so many different fields a long with it! I think the best way to get better at this stuff is to share what you learn and learn from others doing the same.
     </p>
     <p>
-        When I'm not neck-deep in vulnerability management or figuring out what people are actually trying to do from usually obfuscated requests at work, I'm hiking Norway's trails, gaming or throwing discs at the disc golf range. (Oh, and let's not forget my Motorcycle addiction - oh spring, oh spring, where are you?)
+        When I'm not neck-deep in vulnerability management or figuring out what people are actually trying to do from usually obfuscated requests at work, I'm hiking Norway's trails, gaming or throwing discs at the disc golf range. (And let's not forget my Motorcycle addiction - oh spring, oh spring, where are you?)
     </p>
 
     <h2>Why This Blog</h2>
@@ -30,7 +30,7 @@ permalink: /about/
     <ul>
         <li><a href="https://github.com/Mobekk">GitHub</a> - There ain't a lot happening here yet.. But there will!</li>
         <li><a href="https://www.linkedin.com/in/bjørn-mobekk-204710183">LinkedIn</a> - Connect professionally</li>
-        <li>Email - <a href="mailto:your.email@example.com">Coming soon!</a></li>
+        <li>Email - <a href="mailto:hello@mobekk.blog">hello@mobekk.blog</a></li>
     </ul>
     <p>
         Don't be scared to reach out!
