@@ -4,3 +4,4 @@ gem "github-pages", group: :jekyll_plugins
 gem "webrick"
 gem "csv"
 gem "bigdecimal"
+gem "erb"

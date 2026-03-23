@@ -157,7 +157,12 @@ nav {
 }
 
 /* Posts Grid */
-/* Updated post-card to use flexbox for layout */
+.posts-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+}
 
 .post-card {
     background: var(--bg-card);
@@ -364,6 +369,21 @@ footer .container {
     animation: fadeInUp 0.8s ease-out;
 }
 
+.post-cover-image {
+    width: 100%;
+    max-height: 400px;
+    overflow: hidden;
+    margin-top: 2rem;
+}
+
+.post-cover-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
 .post-title {
     font-size: 3rem;
     font-weight: 900;
@@ -374,13 +394,17 @@ footer .container {
 
 .post-content {
     padding: 2rem 0;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
     animation: fadeInUp 0.8s ease-out 0.2s backwards;
 }
 
 .post-content p {
     margin-bottom: 1.5rem;
     color: var(--text-secondary);
-    font-size: 1.05rem;
+    font-size: 1.15rem;
+    line-height: 1.9;
 }
 
 .post-content h2 {
@@ -442,6 +466,12 @@ footer .container {
     border-bottom-color: var(--accent-cyan);
 }
 
+.post-content strong,
+.post-content b {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
 .back-link {
     display: inline-flex;
     align-items: center;
@@ -461,5 +491,38 @@ footer .container {
 .back-link::before {
     content: '←';
     color: var(--accent-green);
+}
+
+/* Reusable prompt box for AI/terminal prompts in posts */
+.prompt-box {
+    position: relative;
+    background: var(--bg-secondary);
+    border: 1px solid var(--accent-cyan);
+    border-left: 3px solid var(--accent-cyan);
+    border-radius: 4px;
+    padding: 1.25rem 1.5rem 1.25rem 3.5rem;
+    margin: 2rem 0;
+    font-family: var(--font-mono);
+    font-size: 0.92rem;
+    color: var(--text-primary);
+    line-height: 1.7;
+    box-shadow: 0 0 12px rgba(0, 217, 255, 0.08);
+}
+
+.prompt-box::before {
+    content: '> _';
+    position: absolute;
+    left: 1rem;
+    top: 1.25rem;
+    color: var(--accent-cyan);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+.prompt-box p {
+    margin: 0 !important;
+    color: var(--text-primary) !important;
+    font-size: inherit !important;
 }
 

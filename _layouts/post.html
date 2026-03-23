@@ -13,6 +13,11 @@ layout: default
         <span class="read-time">{{ page.read_time }} min read</span>
         {% endif %}
     </div>
+    {% if page.image %}
+    <div class="post-cover-image">
+        <img src="{{ page.image | relative_url }}" alt="{{ page.title }}">
+    </div>
+    {% endif %}
 </article>
 
 <section class="post-content">
