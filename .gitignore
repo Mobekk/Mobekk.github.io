@@ -3,4 +3,12 @@ _site/
 .sass-cache/
 .jekyll-cache/
 .jekyll-metadata
-Gemfile.lock
+vendor/
+.bundle/
+__pycache__/
+
+# Local credentials must never enter the repository.
+.env
+.env.*
+!.env.example
+.aws/

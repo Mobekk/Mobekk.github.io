@@ -8,6 +8,10 @@ markdown: kramdown
 plugins:
   - jekyll-feed
 
+# Publish only the intended dot-directory; keep local tooling/private state excluded.
+include:
+  - .well-known
+
 # Exclude files from build
 exclude:
   - Gemfile
@@ -15,3 +19,16 @@ exclude:
   - README.md
   - .gitignore
   - vendor
+  - .bundle
+  - .github
+  - scripts
+  - docs
+  - SECURITY.md
+  - LICENSE
+  - .ruby-version
+  - .python-version
+  - .bundle-audit.yml
+  - .git
+  - .agents
+  - .codex
+  - .aws

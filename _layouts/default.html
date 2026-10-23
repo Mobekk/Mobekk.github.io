@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'none'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'">
+    <meta name="referrer" content="no-referrer">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
+    <title>{% if page.title %}{{ page.title | escape }} - {% endif %}{{ site.title | escape }}</title>
     <link rel="me" href="https://infosec.exchange/@Mobekk">
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Archivo:wght@300;600;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ "/assets/css/fonts.css" | relative_url | escape }}">
+    <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url | escape }}">
     {% feed_meta %}
 </head>
 <body>
@@ -23,8 +23,8 @@
                 <span class="cursor">_</span>
             </div>
             <div class="nav-links">
-                <a href="{{ '/' | relative_url }}">posts</a>
-                <a href="{{ '/about' | relative_url }}">about</a>
+                <a href="{{ '/' | relative_url | escape }}">posts</a>
+                <a href="{{ '/about' | relative_url | escape }}">about</a>
             </div>
         </nav>
     </header>
@@ -37,8 +37,8 @@
         <div class="container">
             <p>&copy; 2026 [Bjørn Mobekk]. All rights reserved.</p>
             <div class="footer-links">
-                <a href="https://github.com/Mobekk" target="_blank">GitHub</a>
-                <a href="https://www.linkedin.com/in/bjørn-mobekk-204710183" target="_blank">LinkedIn</a>
+                <a href="https://github.com/Mobekk" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/in/bjørn-mobekk-204710183" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             </div>
         </div>
     </footer>

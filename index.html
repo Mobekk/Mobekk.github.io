@@ -18,24 +18,26 @@ title: Home
             <div class="post-meta">
                 <time>{{ post.date | date: "%Y-%m-%d" }}</time>
                 <span class="separator">//</span>
-                <span class="read-time">{{ post.read_time | default: "5" }} min read</span>
+                <span class="read-time">{{ post.read_time | default: "5" | escape }} min read</span>
             </div>
-            <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+            <h2><a href="{{ post.url | relative_url | escape }}">{{ post.title | escape }}</a></h2>
             <p class="excerpt">
-                {{ post.excerpt | strip_html | truncatewords: 30 }}
+                {{ post.excerpt | strip_html | truncatewords: 30 | escape }}
             </p>
             {% if post.tags %}
             <div class="tags">
                 {% for tag in post.tags %}
-                <span class="tag tag-{{ tag }}">{{ tag }}</span>
+                <span class="tag tag-{{ tag | slugify | escape }}">{{ tag | escape }}</span>
                 {% endfor %}
             </div>
             {% endif %}
         </div>
         
-        {% if post.image %}
+        {% assign image_file = site.static_files | where: 'path', post.image | first %}
+        {% assign image_prefix = post.image | slice: 0, 15 %}
+        {% if image_file and image_prefix == '/assets/images/' %}
         <div class="post-card-image">
-            <img src="{{ post.image | relative_url }}" alt="{{ post.title }}">
+            <img src="{{ post.image | relative_url | escape }}" alt="{{ post.title | escape }}">
         </div>
         {% endif %}
     </article>

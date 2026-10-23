@@ -1,0 +1,4 @@
+Contact: mailto:hello@mobekk.blog
+Expires: 2027-10-01T00:00:00Z
+Preferred-Languages: en, nb
+Canonical: https://mobekk.blog/.well-known/security.txt
